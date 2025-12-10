@@ -1,69 +1,128 @@
-# 📘 Compte Rendu du Projet  
-## Analyse des Métiers de l’Ingénierie & Pipeline Data Science
+# 🚀 Projet Data Science : Détection du Cancer du Sein  
+Analyse & Pipeline Machine Learning complet
+
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![ML](https://img.shields.io/badge/Model-RandomForest-green)
 
 ---
 
-## 📑 Sommaire
-1. [Introduction](#introduction)  
-2. [Objectif du Projet](#objectif-du-projet)  
-3. [Description des Données](#description-des-données)  
-4. [Pipeline Méthodologique](#pipeline-méthodologique)  
-   - 4.1 [Acquisition & Simulation](#41-acquisition--simulation)  
-   - 4.2 [Nettoyage des données](#42-nettoyage-des-données)  
-   - 4.3 [Analyse exploratoire (EDA)](#43-analyse-exploratoire-eda)  
-   - 4.4 [Séparation des données](#44-séparation-des-données)  
-   - 4.5 [Modélisation (Random Forest)](#45-modélisation-random-forest)  
-   - 4.6 [Évaluation du modèle](#46-évaluation-du-modèle)  
-5. [Analyse Théorique : Random Forest](#analyse-théorique--random-forest)  
-6. [Conclusion Générale](#conclusion-générale)
+## 📑 SOMMAIRE
+
+1. [Contexte Général](#1-contexte-général)  
+2. [Objectifs du Projet](#2-objectifs-du-projet)  
+3. [Dataset & Structure](#3-dataset--structure)  
+4. [Pipeline Machine Learning](#4-pipeline-machine-learning)  
+5. [Schéma Général du Pipeline](#5-schéma-général-du-pipeline)  
+6. [Analyse Théorique Synthétique](#6-analyse-théorique-synthétique)  
+7. [Résultats & Interprétation](#7-résultats--interprétation)  
+8. [Limites & Améliorations](#8-limites--améliorations)  
+9. [Installation & Exécution](#9-installation--exécution)  
+10. [Arborescence du Projet](#10-arborescence-du-projet)  
+11. [Requirements](#11-requirements)  
+12. [Licence](#12-licence)
 
 ---
 
-## 1. Introduction
+# 1. Contexte Général
 
-Ce projet s'inscrit dans une démarche d’analyse métier appliquée au domaine de la data science et de l’ingénierie.  
-Il vise à comprendre et implémenter les différentes étapes d’un pipeline complet de Machine Learning, depuis la préparation des données jusqu’à l’évaluation du modèle.
+Ce projet s'inscrit dans un cadre médical où l’IA est utilisée comme **outil d’aide au diagnostic**.  
+L'objectif est de prédire si une tumeur est :
 
-Le projet s'appuie sur un notebook Python et une analyse approfondie expliquant chaque étape de manière pédagogique et professionnelle.
+- **0 – Maligne (cancer)**
+- **1 – Bénigne**
 
----
+Les conséquences d’une mauvaise classification imposent un focus métier clair :
 
-## 2. Objectif du Projet
-
-L’objectif principal est de construire un modèle de prédiction capable de **distinguer les tumeurs bénignes et malignes** dans un contexte médical sensible.
-
-Les objectifs spécifiques sont :
-- Développer un assistant IA pour le diagnostic.
-- Prioriser la sécurité du patient en minimisant les **faux négatifs**.
-- Appliquer un pipeline complet : nettoyage → exploration → modélisation → évaluation.
+> 🎯 **Objectif principal : minimiser les Faux Négatifs (FN).**
 
 ---
 
-## 3. Description des Données
+# 2. Objectifs du Projet
 
-Le dataset utilisé est le **Breast Cancer Wisconsin Dataset**, contenant des mesures microscopiques de cellules.
+### 🎯 Objectif global  
+Construire un modèle fiable capable de classer correctement les tumeurs.
 
-- **30 features** quantitatives  
-- **1 variable cible :**
-  - `0` : Malin  
-  - `1` : Bénin  
-- Simulation de données manquantes : **5 % de NaN ajoutés** pour se rapprocher d’un cas industriel réel.
-
----
-
-## 4. Pipeline Méthodologique
-
-### 4.1 Acquisition & Simulation
-
-Les données sont importées via `sklearn.datasets`.  
-Une corruption volontaire de 5 % des valeurs a été effectuée pour simuler des données réelles contenant du bruit.
+### 🔍 Objectifs détaillés :
+- Nettoyer et préparer un dataset contenant des valeurs manquantes.
+- Réaliser une EDA complète.
+- Appliquer un pipeline ML standardisé.
+- Utiliser un **Random Forest** pour la classification.
+- Évaluer les performances selon des métriques pertinentes.
+- Identifier les limites et proposer des pistes d’amélioration.
 
 ---
 
-### 4.2 Nettoyage des données
+# 3. Dataset & Structure
 
-L’imputation est réalisée via :
+Dataset utilisé :  
+📌 **Breast Cancer Wisconsin Dataset** (Sklearn)
 
+### 🧬 Description :
+- **30 variables** représentant des caractéristiques cellulaires.
+- Toutes quantitatives.
+- Les images ne sont pas utilisées, seulement leurs descripteurs mathématiques.
+
+### 🛠 Simulation de données manquantes :
+Afin de se rapprocher d’un cas réel, **5 % des données ont été volontairement corrompues avec des NaN**.
+
+---
+
+# 4. Pipeline Machine Learning
+
+Étapes complètes du pipeline :
+
+### ✔ Acquisition
+Chargement du dataset depuis sklearn.
+
+### ✔ Nettoyage
+- Utilisation d’un `SimpleImputer(strategy="mean")`
+- Remplacement des valeurs manquantes par la moyenne.
+
+⚠ **Attention : Data Leakage**
+> L’imputation devrait être effectuée APRÈS le split train/test, pas avant.
+
+### ✔ Analyse exploratoire (EDA)
+- Statistiques descriptives
+- Analyse de la distribution
+- Corrélation entre variables (radius, perimeter, area très corrélées)
+
+### ✔ Split Train/Test
 ```python
-SimpleImputer(strategy='mean')
-
+train_test_split(test_size=0.2, random_state=42)
+                 ┌────────────────────────────────┐
+                 │      Acquisition Dataset       │
+                 └────────────────────────────────┘
+                               │
+                               ▼
+                 ┌────────────────────────────────┐
+                 │  Simulation données manquantes │
+                 └────────────────────────────────┘
+                               │
+                               ▼
+                 ┌────────────────────────────────┐
+                 │      Nettoyage & Imputation    │
+                 └────────────────────────────────┘
+                               │
+                      (Data Leakage Warning)
+                               │
+                               ▼
+                 ┌────────────────────────────────┐
+                 │         Analyse EDA            │
+                 └────────────────────────────────┘
+                               │
+                               ▼
+                 ┌────────────────────────────────┐
+                 │     Train / Test Split         │
+                 └────────────────────────────────┘
+                               │
+                               ▼
+                 ┌────────────────────────────────┐
+                 │     Modèle Random Forest       │
+                 └────────────────────────────────┘
+                               │
+                               ▼
+                 ┌────────────────────────────────┐
+                 │  Évaluation + Matrice Confusion│
+                 └────────────────────────────────┘

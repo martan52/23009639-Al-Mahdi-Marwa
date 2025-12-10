@@ -68,7 +68,7 @@ La matrice de confusion permet d’identifier les vrais positifs, vrais négatif
 
 ## Graphiques et tableaux
 <img src="image1.png" style="height:464px;margin-right:432px"/>
-
+<img src="SALAIRE.png" style="height:464px;margin-right:432px"/>
 
 
 ### Matrice de confusion

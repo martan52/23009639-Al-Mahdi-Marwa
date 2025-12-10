@@ -64,8 +64,7 @@ La matrice de confusion permet d’identifier les vrais positifs, vrais négatif
 ---
 
 ## Graphiques et tableaux
-<img src="<img width="571" height="593" alt="image1" src="https://github.com/user-attachments/assets/d9393dd4-b795-41b6-9b12-59a4c6867312" />
-" style="height:464px;margin-right:432px"/>
+<img src="<img width="571" height="593px" margin-right:432px"/>
 ### Matrice de confusion
 
 | Prédit \ Réel | Malin (0) | Bénin (1) |

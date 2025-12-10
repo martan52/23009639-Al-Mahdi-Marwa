@@ -1,4 +1,4 @@
-# Compte rendu : Projet d’Analyse des Métiers de l’Ingénierie avec Machine Learning
+# Projet d’Analyse des Métiers de l’Ingénierie avec Machine Learning
 
 ## Sommaire
 
@@ -64,7 +64,7 @@ La matrice de confusion permet d’identifier les vrais positifs, vrais négatif
 ---
 
 ## Graphiques et tableaux
-<img src="<img width="571" height="593px" margin-right:432px"/>
+<img src="Image ALmahdi Marwa.jpg" style="height:464px;margin-right:432px"/>
 ### Matrice de confusion
 
 | Prédit \ Réel | Malin (0) | Bénin (1) |

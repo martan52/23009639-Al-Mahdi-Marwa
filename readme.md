@@ -1,3 +1,4 @@
+<img src="Image ALmahdi Marwa.jpg" style="height:464px;margin-right:432px"/>
 
 ## Al Mahdi Marwa
 # Projet d’Analyse des Métiers de l’Ingénierie avec Machine Learning
@@ -67,6 +68,7 @@ La matrice de confusion permet d’identifier les vrais positifs, vrais négatif
 
 ## Graphiques et tableaux
 <img src="image1.png" style="height:464px;margin-right:432px"/>
+<img src="image2.png" style="height:464px;margin-right:432px"/>
 
 
 ### Matrice de confusion

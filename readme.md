@@ -1,3 +1,5 @@
+
+## Al Mahdi Marwa
 # Projet d’Analyse des Métiers de l’Ingénierie avec Machine Learning
 
 ## Sommaire
@@ -65,6 +67,8 @@ La matrice de confusion permet d’identifier les vrais positifs, vrais négatif
 
 ## Graphiques et tableaux
 <img src="image1.png" style="height:464px;margin-right:432px"/>
+
+
 ### Matrice de confusion
 
 | Prédit \ Réel | Malin (0) | Bénin (1) |
@@ -77,12 +81,6 @@ La matrice de confusion permet d’identifier les vrais positifs, vrais négatif
 - Vrais négatifs : 75  
 - Faux positifs : 1  
 - Faux négatifs : 2  
-
-### Graphique : Matrice de confusion
-
-![Matrice de confusion][image:1]
-
----
 
 ## Discussion et recommandations
 

@@ -19,13 +19,13 @@
 
 ## Introduction et contexte métier
 
-Ce projet s’inscrit dans le domaine médical, avec pour objectif la création d’un assistant IA pour le second avis médical, en particulier pour le diagnostic du cancer du sein[web:1]. L’enjeu critique réside dans la matrice des coûts d’erreur, qui est asymétrique : un faux positif (dire à un patient sain qu’il est malade) engendre du stress et des coûts de biopsie, tandis qu’un faux négatif (dire à un patient malade qu’il est sain) peut entraîner la mort par retard de traitement[web:1]. Il est donc impératif de prioriser la sensibilit (recall) du modèle, quitte à accepter un peu plus de faux positifs.
-
+ce projet réalise une analyse complète des salaires dans les métiers de l'ingénierie en Turquie, basée sur un dataset Kaggle de 1000 observations couvrant Istanbul, Ankara, Dier, Izmir, les niveaux Junior, Mid, Senior et 15 professions.
 ---
 
 ## Données et acquisition
 
-Le dataset utilisé est le Breast Cancer Wisconsin Dataset, qui contient 30 colonnes de caractéristiques extraites d’images de cellules (rayon moyen, écart-type de la texture, pire concavité, etc.) et une cible binaire : 0 (malin) et 1 (bénin)[web:1]. Pour simuler la réalité clinique, 5 % de valeurs manquantes (NaN) ont été introduites intentionnellement dans le jeu de données[web:1]. Cette étape permet de tester la robustesse du pipeline de traitement de données.
+Le dataset utilisé provient de Kaggle et porte sur les salaires des ingénieurs logiciels en Turquie pour 2025.
+Il contient 1000 observations synthétiques générées statistiquement à partir des salaires moyens des développeurs logiciels en Turquie. Les données couvrent 4 villes principales (Istanbul, Ankara, Dier, Izmir), 3 niveaux d'expérience (Junior, Mid, Senior) et 15 professions en ingénierie.​
 
 ---
 
@@ -42,27 +42,23 @@ L’analyse descriptive fournit les statistiques de base (moyenne, médiane, éc
 ---
 
 ## Méthodologie de modélisation
+## Méthodologie
+L’étude suit une démarche classique de data analysis sur un dataset Kaggle de 1000 lignes couvrant 4 villes turques (Istanbul, Ankara, Dier, Izmir), 3 niveaux d’expérience (Junior, Mid, Senior) et 15 métiers de l’ingénierie. Elle commence par un nettoyage des données (gestion des valeurs manquantes, cohérence des types) puis une analyse exploratoire via statistiques descriptives et visualisations.​
+Les outils utilisés sont principalement Python avec Pandas pour le prétraitement et les tableaux croisés, ainsi que Seaborn et Matplotlib pour produire des barplots et countplots permettant d’explorer les salaires par ville, profil et profession.​
 
-Le protocole expérimental suit les étapes classiques du machine learning :
-- Séparation train/test (80/20) pour garantir la généralisation et la reproductibilité (graine fixée à 42)[web:1].
-- Modèle : Random Forest (100 arbres), choisi pour sa robustesse face au bruit et à la redondance des données[web:1].
-- Métriques : Accuracy, Precision, Recall, F1-score, matrice de confusion[web:1].
+## Étapes d’analyse
+Construction de tableaux croisés dynamiques pour agréger les salaires moyens par ville, niveau et métier.​
 
-Le Random Forest utilise deux techniques pour améliorer la généralisation :
-- Le *bootstrapping* (chaque arbre est entraîné sur un sous-ensemble différent de données).
-- Le *feature randomness* (chaque arbre ne peut utiliser qu’un sous-ensemble aléatoire de variables pour chaque décision)[web:1].
+Visualisation des répartitions d’effectifs (par exemple Istanbul 57%, Ankara 17%) et des salaires moyens, afin d’identifier les pôles d’emploi et les zones de haute rémunération.​
 
+Mise en évidence des métiers les mieux payés (Data Engineer ~105k TL, Data Science ~90k TL, Machine Learning ~89k TL) et des moins rémunérés (UI/UX, Game Development).
 ---
 
 ## Évaluation des performances
 
-Le modèle est évalué sur le jeu de test. Les métriques principales sont :
-- **Accuracy** : Précision globale
-- **Precision** : Qualité des alarmes (TP / TP + FP)
-- **Recall** : Sensibilité (TP / TP + FN)
-- **F1-score** : Moyenne harmonique de la precision et du recall
+Les performances sont évaluées via des indicateurs clés comme les salaires moyens par métier (Data Engineer ~105k TL), les écarts par ville (Ankara seniors à 210k TL) et les répartitions d'effectifs (Istanbul 57%). La qualité de l'analyse se mesure par la complétude des insights : identification des métiers en croissance (data/sécurité) vs stagnants (UI/UX).
 
-La matrice de confusion permet d’identifier les vrais positifs, vrais négatifs, faux positifs et faux négatifs[web:1].
+Les barplots et countplots valident les tendances, tandis que les tableaux croisés dynamiques quantifient les variations (ex: Istanbul Seniors 116 vs Ankara 26). L'absence d'erreurs dans le nettoyage Pandas et la cohérence des EDA Seaborn confirment la robustesse du pipeline.
 
 ---
 

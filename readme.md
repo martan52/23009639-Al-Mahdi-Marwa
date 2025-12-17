@@ -50,8 +50,8 @@ Les outils utilisés sont principalement Python avec Pandas pour le prétraiteme
 Construction de tableaux croisés dynamiques pour agréger les salaires moyens par ville, niveau et métier.​
 
 Visualisation des répartitions d’effectifs (par exemple Istanbul 57%, Ankara 17%) et des salaires moyens, afin d’identifier les pôles d’emploi et les zones de haute rémunération.​
-
 Mise en évidence des métiers les mieux payés (Data Engineer ~105k TL, Data Science ~90k TL, Machine Learning ~89k TL) et des moins rémunérés (UI/UX, Game Development).
+
 ---
 
 ## Évaluation des performances
